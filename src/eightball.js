@@ -38,8 +38,11 @@ class Eightball extends React.Component {
   }
 
   handleClick(evt) {
-    let random = this.getRandom();
-    this.setState({ msg: random.msg, color: random.color });
+    this.setState({msg: "Thinking...", color: "grey"});
+    setTimeout( () => {
+      let random = this.getRandom();
+      this.setState({ msg: random.msg, color: random.color });
+    }, 1000)
   }
 
   handleReset(evt) {
