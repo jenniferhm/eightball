@@ -1,7 +1,8 @@
 import React from 'react';
 
 class Eightball extends React.Component {
-    static defaultProps = {messages: [
+  static defaultProps = {
+    messages: [
       { msg: "It is certain.", color: "green" },
       { msg: "It is decidedly so.", color: "green" },
       { msg: "Without a doubt.", color: "green" },
@@ -22,12 +23,14 @@ class Eightball extends React.Component {
       { msg: "My sources say no.", color: "red" },
       { msg: "Outlook not so good.", color: "red" },
       { msg: "Very doubtful.", color: "red" },
-    ]}
-  
+    ]
+  }
+
   constructor(props) {
     super(props);
-    this.state = {msg: "Think of a Question", color: "black"};
+    this.state = { msg: "Think of a Question", color: "black" };
     this.handleClick = this.handleClick.bind(this);
+    this.handleReset = this.handleReset.bind(this);
   }
 
   getRandom() {
@@ -36,15 +39,25 @@ class Eightball extends React.Component {
 
   handleClick(evt) {
     let random = this.getRandom();
-    this.setState({msg: random.msg, color: random.color});
+    this.setState({ msg: random.msg, color: random.color });
+  }
+
+  handleReset(evt) {
+    this.setState({ msg: "Think of a Question", color: "black" });
   }
 
   render() {
     return (
-      <button style={{backgroundColor: this.state.color}} onClick={this.handleClick}>
-        {this.state.msg}
-      </button>
-    )
+      <div>
+        <button className="eightball" style={{ backgroundColor: this.state.color }} onClick={this.handleClick}>
+          {this.state.msg}
+        </button>
+        <br/>
+        <button className="reset" onClick={this.handleReset}>
+          Reset
+        </button>
+      </div>
+    );
   }
 }
 
